@@ -25,6 +25,7 @@ class TextFileReader:
         self.file_name = file_name
         self.file_path = str(p.parent / self.file_name)
 
+    @property
     def size(self):
         """Return file size"""
         try:
@@ -77,6 +78,8 @@ class TextFileWriter:
 
 if __name__ == "__main__":
     try:
+        text_1 = TextFileReader('dummy_file.txt')
+        print(text_1.size)
         text_file = TextFileWriter('dummy_file.txt')
         text_file.write_to_file('Crina are mere!')
     except FileNameError as e:

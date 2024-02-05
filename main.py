@@ -1,4 +1,9 @@
-from employees import Employee
+from read_write import TextFileWriter, FileNameError, FileExtensionError
 
-emp1 = Employee()
-print(type(emp1))
+# print(help(TextFileWriter))
+file = TextFileWriter('dummy_2.txt')
+print(dir(file))
+print(help(file.write_to_file))
+
+l = [1, 2]
+print(help(l.append))

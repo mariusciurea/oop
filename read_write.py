@@ -46,6 +46,24 @@ class TextFileReader:
                   f'{self.file_name } does not exist!')
             sys.exit(2)
 
+    @classmethod
+    def from_file(cls, file):
+        """Alternative constructor
+            Read object attributes from a .txt file
+            Return a list with the objects
+        """
+        if not os.path.exists(file):
+            return FileNotFoundError(f'The file {file} does not exist!')
+
+        file_objects = []
+        with open(file, 'r') as fr:
+            content = fr.readlines()
+
+        for file_name in content:
+            file_objects.append(cls(file_name.strip()))
+
+        return file_objects
+
 
 class TextFileWriter:
     """TextFileWriter class
@@ -79,6 +97,11 @@ class TextFileWriter:
 if __name__ == "__main__":
     try:
         text_1 = TextFileReader('dummy_file.txt')
+        file_objects = TextFileReader.from_file('files.txt')
+        for file in file_objects:
+            print(file.file_name)
+            print(file.get_content())
+            print()
         print(text_1.size)
         text_file = TextFileWriter('dummy_file.txt')
         text_file.write_to_file('Crina are mere!')
